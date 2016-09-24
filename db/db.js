@@ -1,5 +1,5 @@
 const pgp = require('pg-promise')();
-const db = pgp('postgres://youngwoo@localhost:5432/auth');
+const db = pgp('postgres://youngwoo@localhost:5432/underdogpool');
 
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
@@ -23,7 +23,8 @@ var login = function(req, res, next){
         if(cmp){
           req.session.user = {
             'email': user.email,
-            'id': user.id
+            'id': user.id,
+            'type': user.type
           };
           next();
         } else {
@@ -41,21 +42,27 @@ var logout = function(req, res, next){
 };
 
 var create_user = function(req, res, next){
+
   var email = req.body.email;
   var password = req.body.password;
+  var name = req.body.name;
+  // var team_id = req.body.team_id;
+  var type = req.body.type;
 
   bcrypt.hash(password, 10, function(err, hashed_password){
     db.none(
-      "INSERT INTO users (email, password_digest) VALUES ($1, $2)",
-      [email, hashed_password]
+      "INSERT INTO users (name, email, password_digest, type) VALUES ($1, $2, $3, $4)",
+      [name, email, hashed_password, type]
     ).catch(function(){
       res.error = 'Error. User could not be created.';
       next();
     }).then(function(user){
+      // console.log('email: ', email, 'type: ', type, 'user: ', user);
       req.session.user = {
-        'email': email
+        'email': email,
+        'type': type
       };
-      next();
+      res.render('sessions/new');
     });
   });
 };

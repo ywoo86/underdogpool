@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/db');
 
-router.get('/new', function(req, res){
+router.get('/login', function(req, res){
   var error = req.flash('error')[0];
   res.render('sessions/new', { 'error': error });
 });

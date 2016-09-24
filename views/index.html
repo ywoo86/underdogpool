@@ -10,6 +10,18 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
-    <a href="/sessions/logout">Logout</a>
+    <h1>HI Main Index File</h1>
+
+    <!-- This section should show when user is logged in -->
+    {{#user_id}}
+      {{>test}}
+      <a href="/sessions/logout">Logout</a>
+    {{/user_id}}
+
+
+    <!-- This section shows whne user is logged out or public view -->
+    {{^user_id}}
+      <a href="/sessions/login">Login</a>
+    {{/user_id}}
   </body>
 </html>

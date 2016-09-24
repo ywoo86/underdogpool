@@ -8,34 +8,89 @@
   <body>
     <div class="main-container">
       <div class="border-container">
-        <h1>Super Secure Signup Page</h1>
+        <h1>Create An Account</h1>
         <div class="col-lg-6 center-block">
           <div class="well bs-component">
+
             {{#error}}
             <div class="alert alert-dismissible alert-danger">
               <strong>Oh snap!<strong> {{error}}
             </div>
             {{/error}}
+
             <form class="form-horizontal" action="/users/create" method="post">
               <fieldset>
-                <legend>Sign Up</legend>
+
                 <div class="form-group">
-                  <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                  <label for="name" class="col-lg-2 control-label">Name</label>
                   <div class="col-lg-10">
-                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Name">
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                  <label for="email" class="col-lg-2 control-label">Email</label>
                   <div class="col-lg-10">
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input name="email" type="text" class="form-control" id="email" placeholder="Email">
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="password" class="col-lg-2 control-label">Password</label>
+                  <div class="col-lg-10">
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password">
+                  </div>
+                </div>
+
+                <input name="type" type="hidden" value="user">
+<!--
+                <div class="form-group">
+                  <div class="col-lg-10">
+                    <select name="team_id">
+                      <option name="team_id" value="1">Arizona Cardinals</option>
+                      <option name="team_id" value="2">Atlanta Falcons</option>
+                      <option name="team_id" value="3">Baltimore Ravens</option>
+                      <option name="team_id" value="4">Buffalo Bills</option>
+                      <option name="team_id" value="5">Carolina Panthers</option>
+                      <option name="team_id" value="6">Chicago Bears</option>
+                      <option name="team_id" value="7">Cincinnati Bengals</option>
+                      <option name="team_id" value="8">Cleveland Browns</option>
+                      <option name="team_id" value="9">Dallas Cowboys</option>
+                      <option name="team_id" value="10">Denver Broncos</option>
+                      <option name="team_id" value="11">Detroit Lions</option>
+                      <option name="team_id" value="12">Green Bay Packers</option>
+                      <option name="team_id" value="13">Houston Texans</option>
+                      <option name="team_id" value="14">Indianapolis Colts</option>
+                      <option name="team_id" value="15">Jacksonville Jaguars</option>
+                      <option name="team_id" value="16">Kansas City Chiefs</option>
+                      <option name="team_id" value="17">Los Angeles Rams</option>
+                      <option name="team_id" value="18">Miami Dolphins</option>
+                      <option name="team_id" value="19">Minnesota Vikings</option>
+                      <option name="team_id" value="20">New England Patriots</option>
+                      <option name="team_id" value="21">New Orleans Saints</option>
+                      <option name="team_id" value="22">New York Giants</option>
+                      <option name="team_id" value="23">New York Jets</option>
+                      <option name="team_id" value="24">Oakland Raiders</option>
+                      <option name="team_id" value="25">Philadelphia Eagles</option>
+                      <option name="team_id" value="26">Pittsburgh Steelers</option>
+                      <option name="team_id" value="27">San Diego Chargers</option>
+                      <option name="team_id" value="28">San Francisco 49ers</option>
+                      <option name="team_id" value="29">Seattle Seahawks</option>
+                      <option name="team_id" value="30">Tampa Bay Buccaneers</option>
+                      <option name="team_id" value="31">Tennessee Titans</option>
+                      <option name="team_id" value="32">Washington Redskins</option>
+                    </select>
+                  </div>
+                </div> -->
+
+
+
                 <div class="form-group">
                   <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-primary">Join!</button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                   </div>
                 </div>
+
               </fieldset>
             </form>
           </div>

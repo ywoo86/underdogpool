@@ -14,8 +14,7 @@ CREATE TABLE users (
   name VARCHAR(50),
   email VARCHAR(255) UNIQUE,
   password_digest VARCHAR(255),
-  team_id INTEGER REFERENCES teams(id),
-  admin BOOLEAN
+  type VARCHAR(10)
 );
 
 

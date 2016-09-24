@@ -11,11 +11,13 @@
         <h1>Login Page</h1>
         <div class="col-lg-6 center-block">
           <div class="well bs-component">
+
             {{#error}}
             <div class="alert alert-dismissible alert-danger">
               <strong>Uh Oh!<strong> {{error}}
             </div>
             {{/error}}
+
             <form class="form-horizontal" action="/sessions/create" method="post">
               <fieldset>
                 <legend>Login</legend>
