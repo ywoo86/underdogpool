@@ -15,7 +15,7 @@ $().ready(function(){
 
   // get/return the value of the selected week
   var getValue = function(elStr){
-    var $tempVal = $('#select-week').val();
+    var $tempVal = $(elStr).val();
     return $tempVal;
   };
 
@@ -100,8 +100,17 @@ $().ready(function(){
 
   $('.submit-picks').on('click', function(event){
     var urlStr = 'matchups/';
-    var data = {};
+    var data = {
+      pick1: getValue('.select-game-1'),
+      pick2: getValue('.select-game-2'),
+      pick3: getValue('.select-game-3')
+    };
+    ajaxMethod(urlStr, 'post', confirmFxn, data);
   });
+
+  var confirmFxn = function(){
+    console.log('Success!');
+  };
 
 
 
