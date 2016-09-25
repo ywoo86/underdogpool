@@ -1,27 +1,31 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Rye' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'</script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="/js/script.js"></script>
   </head>
   <body>
-    <h1>HI Main Index File</h1>
 
     <!-- This section should show when user is logged in -->
     {{#user_id}}
-      {{>test}}
-      <a href="/sessions/logout">Logout</a>
+      {{>loggedin}}
+      {{>matchups}}
+      {{>selections}}
     {{/user_id}}
-
 
     <!-- This section shows whne user is logged out or public view -->
     {{^user_id}}
-      <a href="/sessions/login">Login</a>
+      {{>loggedout}}
+      {{>matchups}}
     {{/user_id}}
+
+    <div class="weekly-listing"></div>
+
   </body>
 </html>

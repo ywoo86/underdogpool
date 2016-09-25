@@ -9,3 +9,8 @@ h1 {
 }
 
 .center-block { float: none }
+
+img {
+  height: 50px;
+  width:  50px;
+}
