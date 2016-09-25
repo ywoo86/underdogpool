@@ -10,9 +10,8 @@ var login = function(req, res, next){
   var auth_error = 'Incorrect Email / Password!';
 
   db.one(
-    "SELECT * FROM users WHERE email = $1",
-    [email]
-  ).catch(function(){
+    "SELECT * FROM users WHERE email = $1", [email])
+  .catch(function(){
     res.error = auth_error;
     next();
   }).then(function(user){
@@ -23,7 +22,7 @@ var login = function(req, res, next){
         if(cmp){
           req.session.user = {
             'email': user.email,
-            'id': user.id,
+            'id': user.users_id,
             'type': user.type
           };
           next();
@@ -45,19 +44,16 @@ var create_user = function(req, res, next){
 
   var email = req.body.email;
   var password = req.body.password;
-  var name = req.body.name;
-  // var team_id = req.body.team_id;
+  var name = req.body.users_name;
   var type = req.body.type;
 
   bcrypt.hash(password, 10, function(err, hashed_password){
     db.none(
-      "INSERT INTO users (name, email, password_digest, type) VALUES ($1, $2, $3, $4)",
-      [name, email, hashed_password, type]
-    ).catch(function(){
+      "INSERT INTO users (users_name, email, password_digest, type) VALUES ($1, $2, $3, $4)", [name, email, hashed_password, type])
+    .catch(function(){
       res.error = 'Error. User could not be created.';
       next();
     }).then(function(user){
-      // console.log('email: ', email, 'type: ', type, 'user: ', user);
       req.session.user = {
         'email': email,
         'type': type
