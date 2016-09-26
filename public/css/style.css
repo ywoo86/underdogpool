@@ -1,16 +1,32 @@
-.main-container {
-  width: 980px;
-  margin: 0 auto;
+.nav-wrapper {
+  background-color: #003399;
+  /* z-index: 1; */
+  /* box-shadow: none; */
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 40px;
+nav {
+  box-shadow: none;
+  z-index: 1;
 }
-
-.center-block { float: none }
 
 img {
   height: 50px;
   width:  50px;
 }
+
+a.brand-logo{
+  padding: 5px;
+}
+
+span {
+  color: #ff0000;
+}
+
+.btn {
+  background-color: #ff0000;
+}
+
+.btn:hover {
+  background-color: #ff0000;
+}
+

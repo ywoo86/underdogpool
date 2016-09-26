@@ -7,10 +7,12 @@ $().ready(function(){
     var $selectGameOptions = $('.select-game-options');
     var $images = $('div.team-images');
     var $weeklySelections = $('#weekly-selections');
+    var $tempStore = $('div.temp-store');
 
     $images.remove();
     $selectGameOptions.remove();
     $weeklySelections.hide();
+    $tempStore.attr('data-num', "");
   };
 
   // get/return the value of the selected week
@@ -41,10 +43,11 @@ $().ready(function(){
     var count = 0;
 
     var $weeklySelections = $('div#weekly-selections');
-    var $selection = $("<select multiple class='select-game'>");
+    var $selection = $("<select class='select-game'>");
     var $noOption = $("<option value='' disabled selected>-- Select Visiting Underdogs --</option>");
     $selection.append($noOption);
     $weeklySelections.show();
+    // var $tempStore = $('.temp-store');
 
     do {
       // create div.team-images element with 'away' image at 'home' image
@@ -57,13 +60,17 @@ $().ready(function(){
       // append div.team-images element to the div.weekly-listing
       $listing.append($div);
 
-      // create option.weekly-option element with value of matchups_id and game name
-      var $option = $("<option class='select-game-options' value='"+  data.away[count].matchups_id  +"'>");
-      $option.text(data.away[count].teams_name + ' at ' + data.home[count].teams_name);
+      // create option.weekly-option element with value of matchups_id
+      var $option = $("<option class='select-game-options' name='" + data.away[count].away_id + "'value='"+ data.away[count].matchups_id  +"'>");
+      $option.text(data.away[count].teams_name);
       $selection.append($option);
+
+      // so i dont continue to bang my head against the wall and hide data instead
 
       count++;
     } while (count < data.away.length)
+
+    // $tempStore.attr('data-num', data.away[count].away_id);
 
     $weeklySelections.append($selection);
 
@@ -82,14 +89,16 @@ $().ready(function(){
   // Listening for click action on submit to send picks to db
   $('button.submit-picks').on('click', function(event){
     var urlStr = 'matchups/';
-    var tempArr = $('select.select-game').val()
+    var tempValue = getValue('select.select-game');
+    var $option = $("option.select-game-options[value="+tempValue+"]").attr('name');
 
     var data = {
-      pick1: tempArr[0],
-      pick2: tempArr[1],
-      pick3: tempArr[2]
+      game_picked: tempValue,
+      team_picked: $option
     };
+
     ajaxMethod(urlStr, 'post', confirmFxn, data);
+    resetAll();
   });
 
   // Random function just to confirm successful action
