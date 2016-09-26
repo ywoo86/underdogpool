@@ -8,9 +8,11 @@ $().ready(function(){
     var $images = $('div.team-images');
     var $weeklySelections = $('#weekly-selections');
     var $tempStore = $('div.temp-store');
+    var $selection = $('.select-game');
 
     $images.remove();
     $selectGameOptions.remove();
+    $selection.remove();
     $weeklySelections.hide();
     $tempStore.attr('data-num', "");
   };
@@ -47,7 +49,6 @@ $().ready(function(){
     var $noOption = $("<option value='' disabled selected>-- Select Visiting Underdogs --</option>");
     $selection.append($noOption);
     $weeklySelections.show();
-    // var $tempStore = $('.temp-store');
 
     do {
       // create div.team-images element with 'away' image at 'home' image
@@ -65,12 +66,8 @@ $().ready(function(){
       $option.text(data.away[count].teams_name);
       $selection.append($option);
 
-      // so i dont continue to bang my head against the wall and hide data instead
-
       count++;
     } while (count < data.away.length)
-
-    // $tempStore.attr('data-num', data.away[count].away_id);
 
     $weeklySelections.append($selection);
 
@@ -99,12 +96,12 @@ $().ready(function(){
 
     ajaxMethod(urlStr, 'post', confirmFxn, data);
     resetAll();
+    location.replace('/users/show');
   });
 
   // Random function just to confirm successful action
   var confirmFxn = function(){
     console.log('Success!');
-    // confirmation animation
   };
 
   // Reset any values on the screen

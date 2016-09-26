@@ -31,9 +31,7 @@ const db2 = pgp('postgres://youngwoo@localhost:5432/underdogpool');
       res.error = "Error: Picks not confirmed";
       next();
     }).then(function(){
-
-      // may have to call to db for information about users picks per week
-      res.redirect('/users/show')
+      res.redirect('/users/show');
     })
   });
 

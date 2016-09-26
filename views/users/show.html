@@ -12,7 +12,42 @@
   </head>
 <body>
 
-  <h1>You made it! Success!</h1>
+  <div class="container">
+    {{>loggedin_show}}
+
+    <div class="row">
+
+      {{#picks}}
+        <div class="col s12 m7">
+          <h2 class="header">Week {{week}}</h2>
+          <div class="card horizontal">
+            <div class="card-image">
+              <img class="single" src="/images/{{palette}}">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>{{teams_name}}</p>
+              </div>
+              <div class="card-action right-align">
+                <a href="#"><i class="small material-icons black-text">delete</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/picks}}
+
+    </div>
+  </div>
+
 
 </body>
 </html>
+
+
+
+
+
+<!--           <h5>Week: {{week}}</h5>
+        <div class="col s6">
+          <div><img src="/images/{{palette}}"> {{teams_name}}</div>
+        </div> -->

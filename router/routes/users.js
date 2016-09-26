@@ -18,10 +18,9 @@ router.post('/create', db.create_user, function (req, res) {
 
 router.get('/show', function (req, res) {
   db3.any(
-    "SELECT * FROM picks WHERE picks_user_id=$1", [req.session.user.id])
+    "SELECT * FROM picks p JOIN matchups m ON p.game_picked_id=m.matchups_id JOIN teams t ON m.underdog=t.teams_id WHERE p.picks_user_id=$1", [req.session.user.id])
   .then(function(data){
-    console.log(data);
-    res.render('users/show', data);
+    res.render('users/show', {picks: data});
   })
 });
 
