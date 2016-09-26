@@ -1,6 +1,6 @@
 $().ready(function(){
 
-  // $('select').material_select();
+  $('select').material_select();
 
   // reset all values
   var resetAll = function(){
@@ -19,18 +19,8 @@ $().ready(function(){
     return $tempVal;
   };
 
-  // getJSON call
-  // var getData = function(url, fxName){
-  //   $.getJSON(url)
-  //   .done(function(data){
-  //     fxName(data);
-  //   })
-  //   .fail(function(data){
-  //     console.log('Error: GET Failed')
-  //   })
-  // };
 
-  //
+  // multi ajax call and processing
   var ajaxMethod = function(urlStr, meth, fxName, data){
     $.ajax({
       url: urlStr,
@@ -50,17 +40,15 @@ $().ready(function(){
     var $listing = $('.weekly-listing');
     var count = 0;
 
-
     var $weeklySelections = $('div#weekly-selections');
+    var $selection = $("<select multiple class='select-game'>");
+    var $noOption = $("<option value='' disabled selected>-- Select Visiting Underdogs --</option>");
+    $selection.append($noOption);
     $weeklySelections.show();
-
-    var $selection1 = $('.select-game-1');
-    var $selection2 = $('.select-game-2');
-    var $selection3 = $('.select-game-3');
 
     do {
       // create div.team-images element with 'away' image at 'home' image
-      var $div = $("<div class='team-images'>");
+      var $div = $("<div class='team-images card-panel col s4 center-align'>");
       var tempHTML = "<img src='/images/" + data.away[count].palette
         + "'> at <img src='/images/"
         + data.home[count].palette + "'>";
@@ -69,51 +57,46 @@ $().ready(function(){
       // append div.team-images element to the div.weekly-listing
       $listing.append($div);
 
-
       // create option.weekly-option element with value of matchups_id and game name
-      var $option1 = $("<option class='select-game-options' value='"+  data.away[count].matchups_id  +"'>");
-      $option1.text(data.away[count].teams_name + ' at ' + data.home[count].teams_name);
+      var $option = $("<option class='select-game-options' value='"+  data.away[count].matchups_id  +"'>");
+      $option.text(data.away[count].teams_name + ' at ' + data.home[count].teams_name);
+      $selection.append($option);
 
-      var $option2 = $("<option class='select-game-options' value='"+  data.away[count].matchups_id  +"'>");
-      $option2.text(data.away[count].teams_name + ' at ' + data.home[count].teams_name);
-
-      var $option3 = $("<option class='select-game-options' value='"+  data.away[count].matchups_id  +"'>");
-      $option3.text(data.away[count].teams_name + ' at ' + data.home[count].teams_name);
-
-      // append option.weekly-option element to select.select-game
-      $selection1.append($option1);
-      $selection2.append($option2);
-      $selection3.append($option3);
-
-      // increment count
       count++;
     } while (count < data.away.length)
-  };
+
+    $weeklySelections.append($selection);
+
+    $('select').material_select();
+  }; // finally the end of this function!
+
 
   // Listening for change in week dropdown value
   $('#select-week').change(function(event){
     resetAll();
     var urlStr = 'matchups/' + getValue('#select-week');
-    // getData(urlStr, changeWeek);
     ajaxMethod(urlStr, 'get', changeWeek, null);
   });
 
-  $('.submit-picks').on('click', function(event){
+
+  // Listening for click action on submit to send picks to db
+  $('button.submit-picks').on('click', function(event){
     var urlStr = 'matchups/';
+    var tempArr = $('select.select-game').val()
+
     var data = {
-      pick1: getValue('.select-game-1'),
-      pick2: getValue('.select-game-2'),
-      pick3: getValue('.select-game-3')
+      pick1: tempArr[0],
+      pick2: tempArr[1],
+      pick3: tempArr[2]
     };
     ajaxMethod(urlStr, 'post', confirmFxn, data);
   });
 
+  // Random function just to confirm successful action
   var confirmFxn = function(){
     console.log('Success!');
+    // confirmation animation
   };
-
-
-
 
   // Reset any values on the screen
   resetAll();
