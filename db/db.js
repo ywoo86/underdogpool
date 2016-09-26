@@ -7,12 +7,11 @@ const salt = bcrypt.genSalt(10);
 var login = function(req, res, next){
   var email = req.body.email;
   var password = req.body.password;
-  var auth_error = 'Incorrect Email / Password!';
 
   db.one(
     "SELECT * FROM users WHERE email = $1", [email])
   .catch(function(){
-    res.error = auth_error;
+    res.error = "Incorrect Email or Password";
     next();
   }).then(function(user){
     bcrypt.compare(
@@ -27,7 +26,7 @@ var login = function(req, res, next){
           };
           next();
         } else {
-          res.error = auth_error;
+          res.error = "Incorrect Email or Password";
           next();
         }
       }
@@ -46,10 +45,11 @@ var create_user = function(req, res, next){
   var password = req.body.password;
   var name = req.body.users_name;
   var type = req.body.type;
+  var points = parseInt(req.body.points);
 
   bcrypt.hash(password, 10, function(err, hashed_password){
     db.none(
-      "INSERT INTO users (users_name, email, password_digest, type) VALUES ($1, $2, $3, $4)", [name, email, hashed_password, type])
+      "INSERT INTO users (users_name, email, password_digest, type, points) VALUES ($1, $2, $3, $4, $5)", [name, email, hashed_password, type, points])
     .catch(function(){
       res.error = 'Error. User could not be created.';
       next();

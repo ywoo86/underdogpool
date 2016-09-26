@@ -16,14 +16,18 @@ CREATE TABLE users (
   users_name VARCHAR(50),
   email VARCHAR(255) UNIQUE,
   password_digest VARCHAR(255),
-  type VARCHAR(10)
+  type VARCHAR(10),
+  points INTEGER
 );
 
 CREATE TABLE matchups (
   matchups_id SERIAL PRIMARY KEY,
   week INTEGER,
   home_id INTEGER REFERENCES teams(teams_id),
-  away_id INTEGER REFERENCES teams(teams_id)
+  away_id INTEGER REFERENCES teams(teams_id),
+  underdog INTEGER,
+  underdog_win BOOLEAN,
+  gameover BOOLEAN
 );
 
 CREATE TABLE picks (
