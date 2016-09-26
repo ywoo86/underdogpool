@@ -31,11 +31,10 @@ CREATE TABLE matchups (
 );
 
 CREATE TABLE picks (
-  picks_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   picks_user_id INTEGER REFERENCES users(users_id),
-  pick1_id INTEGER REFERENCES matchups(matchups_id),
-  pick2_id INTEGER REFERENCES matchups(matchups_id),
-  pick3_id INTEGER REFERENCES matchups(matchups_id)
+  game_picked_id INTEGER REFERENCES matchups(matchups_id),
+  team_picked_id INTEGER REFERENCES teams(teams_id)
 );
 
 
