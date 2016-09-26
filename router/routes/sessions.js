@@ -3,12 +3,11 @@ const router = express.Router();
 const db = require('../../db/db');
 
 router.get('/login', function(req, res){
-  var error = req.flash('error')[0];
-  res.render('sessions/new', { 'error': error });
+  // var error = req.flash('error')[0];
+  res.render('sessions/new');
 });
 
 router.post('/create', db.login, function(req, res){
-  if(res.error) req.flash('error', res.error);
   res.redirect('/');
 });
 
