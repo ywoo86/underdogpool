@@ -1,35 +1,40 @@
 <!doctype html>
 <html>
   <head>
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Rye' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
   </head>
   <body>
+    <div class="container">
+      {{>loggedout}}
 
-    <form class="form-horizontal" action="/sessions/create" method="post">
-      <fieldset>
-        <legend>Login</legend>
-        <div class="form-group">
-          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-          <div class="col-lg-10">
-            <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-          <div class="col-lg-10">
-            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2">
-            <button type="submit" class="btn btn-primary">Login</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
+      <div class="row">
+        <form class="col s12" action="/sessions/create" method="post">
+          <div class="row">
 
-  <p><a href="/users/new">Sign Up</a></p>
+            <div class="input-field col s4 offset-s2">
+              <input placeholder="email@gmail.com" id="email" type="text" name="email">
+              <label for="email"></label>
+            </div>
+
+            <div class="input-field col s4">
+              <input id="password" type="password" name="password">
+              <label for="password">Password</label>
+            </div>
+
+            <div class="col s4 offset-s2">
+              <button type="submit" class="waves-effect waves-light btn">Login</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
 
   </body>
 </html>
