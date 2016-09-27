@@ -53,8 +53,8 @@ $().ready(function(){
     do {
       // create div.team-images element with 'away' image at 'home' image
       var $div = $("<div class='team-images card-panel col s4 center-align'>");
-      var tempHTML = "<img src='/images/" + data.away[count].palette
-        + "'> at <img src='/images/"
+      var tempHTML = "<img class='circle' src='/images/" + data.away[count].palette
+        + "'> at <img class='circle' src='/images/"
         + data.home[count].palette + "'>";
       $div.html(tempHTML);
 
