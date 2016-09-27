@@ -21,7 +21,9 @@ app.use(session({
 
 app.use(flash());
 
-app.listen(3000, function () {
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function () {
   console.log('Auth Demo App Online!');
 });
 

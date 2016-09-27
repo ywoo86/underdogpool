@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pgp = require('pg-promise')();
 const db = require('../../db/db');
-const db3 = pgp('postgres://youngwoo@localhost:5432/underdogpool');
+// const db3 = pgp('postgres://youngwoo@localhost:5432/underdogpool');
+const db3 = pgp(process.env.DATABASE_URL);
 
 router.get('/new', function (req, res) {
   res.render('users/new');

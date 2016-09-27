@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pgp = require('pg-promise')();
 // const db = require('../../db/db');
-const db2 = pgp('postgres://youngwoo@localhost:5432/underdogpool');
+// const db2 = pgp('postgres://youngwoo@localhost:5432/underdogpool');
 
-// const db2 = pgp(process.env.DATABASE_URL);
+const db2 = pgp(process.env.DATABASE_URL);
 
   router.get('/:week', function(req, res){
     var week = req.params.week;
