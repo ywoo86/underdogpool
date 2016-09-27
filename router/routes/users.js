@@ -24,5 +24,16 @@ router.get('/show', function (req, res) {
   })
 });
 
+router.get('/destroy/:id', function (req, res) {
+  var id = req.params.id;
+  db3.none(
+    "DELETE FROM picks WHERE id=$1", [id])
+  .then(function(){
+    res.redirect('/users/show');
+  }).catch(function(){
+    console.log('Error: Did not delete');
+  })
+})
+
 
 module.exports = router;
