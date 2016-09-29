@@ -1,28 +1,43 @@
-# Example Express Auth App
+# Project 5 - NFL Underdog Pool
 
-### Setup
+___
 
-1. Install packages:
+### Description
+Can't seem to win that coveted fantasy football trophy, year after year? Then maybe it's time to try your hand at the Underdog Pool. Simply select your underdog winner of the week and let chance take over from there. 
 
-    ```
-    npm install
-    ```
+---
 
-1. Create a database and run the schema file. In PostgreSQL:
+### Technology Used
+The following technologies were used for this web application:
 
-    ```
-    createdb auth
-    psql -d auth -f db/schema.sql
-    ```
+* HTML
+* CSS
+* Javascript
+* jQuery
+* Node.js
+* API: sportradar
 
-1. Add your database credentials to `db/db.js` on line 2:
+---
 
-    ```
-    const db = pgp('postgres://xxxxxxx@localhost:5432/auth');
-    ```
+### User Stories
+1. As any user, you can select a week and see what games are playing
+2. As a logged in user, you can select an underdog of the week and submit your pick
+3. As an administrator, you can pull from the API and update the database with new information
+4. As an administrator, the system will calculate points earned and all fields are open to edit/update
 
-1. Start the server:
+---
 
-    ```
-    npm start
-    ```
+### Issues & Resolutions
+
+* Original project in Rails framework. Difficulty with db relationships.
+
+---
+
+### Sources
+
+* [jQuery](http://api.jquery.com/)
+* [Mozilla Developers Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [API](http://developer.sportradar.us/)
+
+
+
